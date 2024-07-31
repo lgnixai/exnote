@@ -1,0 +1,73 @@
+@import '../../classNames/style.scss';
+
+$container: prefix('tree');
+$treeNode: BEMElement($container, 'treenode');
+$title: BEMElement($container, 'title');
+$indent: BEMElement($container, 'indent');
+$guide: BEMElement($indent, 'guide');
+
+$active: BEMModifier($treeNode, 'active');
+
+$treenode-height: 22px;
+
+.#{$container} {
+    font-size: 13px;
+
+    .#{$treeNode} {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        gap: 6px;
+        height: $treenode-height;
+        padding-left: 10px;
+        user-select: none;
+
+        &:hover {
+            background-color: var(--list-hoverBackground);
+            outline: 1px dashed var(--contrastActiveBorder);
+            outline-offset: -1px;
+        }
+
+        &.#{$active} {
+            background-color: var(--list-inactiveSelectionBackground);
+            outline: 1px dotted var(--contrastActiveBorder);
+            outline-offset: -1px;
+        }
+
+        &:focus {
+            background-color: var(--list-activeSelectionBackground);
+            color: #fff;
+            outline: 1px solid var(--focusBorder);
+            outline-offset: -1px;
+        }
+    }
+
+    .#{$indent} {
+        display: flex;
+        height: 100%;
+        margin-right: 2px;
+
+        .#{$guide} {
+            border-left: 1px solid var(--tree-indentGuidesStroke);
+            display: inline-block;
+            height: 100%;
+            margin-left: 7px;
+        }
+    }
+
+    .#{$title} {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+:export {
+    container: $container;
+    treeNode: $treeNode;
+    indent: $indent;
+    title: $title;
+    guide: $guide;
+    active: $active;
+}

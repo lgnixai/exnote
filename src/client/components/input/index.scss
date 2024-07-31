@@ -1,0 +1,111 @@
+@import '../../classNames/style.scss';
+
+$container: prefix('textarea');
+$widget: BEMElement($container, 'widget');
+$validation: BEMElement($container, 'validation');
+
+$info: BEMModifier($container, 'info');
+$warning: BEMModifier($container, 'warning');
+$error: BEMModifier($container, 'error');
+$validating: BEMModifier($container, 'validating');
+
+$small: BEMModifier($container, 'small');
+
+$widget-size: 26px;
+$small-widget-size: 20px;
+
+/* prettier-ignore */
+$status-colors: (
+    $info: (border: var(--inputValidation-infoBorder), background: var(--inputValidation-infoBackground)),
+    $warning: (border: var(--inputValidation-warningBorder), background: var(--inputValidation-warningBackground)),
+    $error: (border: var(--inputValidation-errorBorder), background: var(--inputValidation-errorBackground)),
+    $validating: (border: var(--inputValidation-infoBorder), background: var(--inputValidation-infoBackground)),
+);
+
+@mixin status($border, $background) {
+    .#{$widget} {
+        outline: 1px solid $border;
+        outline-offset: -1px;
+    }
+
+    .#{$validation} {
+        background: $background;
+        border: 1px solid $border;
+    }
+}
+
+.#{$container} {
+    position: relative;
+    font-size: 14px;
+    line-height: 0;
+
+    &.#{$small} {
+        font-size: 13px;
+
+        .#{$widget} {
+            padding: 2px 0 2px 1px;
+            height: $small-widget-size;
+            min-height: $small-widget-size;
+            line-height: calc($small-widget-size - 4px);
+        }
+
+        .#{$validation} {
+            top: calc($small-widget-size - 1px);
+        }
+    }
+
+    .#{$widget} {
+        background: var(--input-background);
+        border: 1px solid var(--input-border, transparent);
+        box-sizing: border-box;
+        color: var(--input-foreground);
+        font-family: inherit;
+        font-size: inherit;
+        height: $widget-size;
+        min-height: $widget-size;
+        overflow: hidden;
+        padding: 4px;
+        resize: none;
+        width: 100%;
+
+        // TODO: better to mock a scroll bar
+        // invisible scroll bar
+        &::-webkit-scrollbar {
+            opacity: 0;
+        }
+    }
+
+    .#{$widget}:focus ~ .#{$validation} {
+        display: block;
+    }
+
+    .#{$validation} {
+        padding: 4px;
+        position: absolute;
+        z-index: 99;
+        top: calc($widget-size - 1px);
+        width: 100%;
+        box-sizing: border-box;
+        display: none;
+        line-height: 1.15;
+    }
+
+    @each $name, $status in $status-colors {
+        &.#{$name} {
+            @include status(map-get($status, 'border'), map-get($status, 'background'));
+        }
+    }
+}
+
+:export {
+    container: $container;
+    small: $small;
+    widget: $widget;
+    validation: $validation;
+    info: $info;
+    warning: $warning;
+    error: $error;
+    validating: $validating;
+    widgetSize: $widget-size;
+    smallWidgetSize: $small-widget-size;
+}

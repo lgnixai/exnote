@@ -1,0 +1,52 @@
+@import '../../classNames/style.scss';
+
+$statusBar: prefix('statusBar');
+$container: BEMElement($statusBar, 'item');
+$label: BEMElement($statusBar, 'label');
+
+$disabled: BEMModifier($statusBar, 'disabled');
+
+.#{$container} {
+    height: 100%;
+    user-select: none;
+
+    .#{$label} {
+        align-items: center;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        height: 100%;
+        outline-width: 0;
+        text-overflow: ellipsis;
+        white-space: pre;
+        overflow: hidden;
+        line-height: 22px;
+
+        &:not(:empty) {
+            padding: 0 5px;
+            margin: 0 3px;
+        }
+    }
+
+    &:not(.#{$disabled}):hover {
+        background-color: var(--statusBarItem-hoverBackground);
+    }
+
+    &:not(.#{$disabled}):active {
+        background-color: var(--statusBarItem-activeBackground);
+    }
+
+    .codicon {
+        font-size: 14px;
+    }
+
+    &.#{$disabled} {
+        color: var(--disabledForeground);
+    }
+}
+
+:export {
+    container: $container;
+    label: $label;
+    disabled: $disabled;
+}

@@ -1,0 +1,13 @@
+$prefix: 'mo';
+
+@function prefix($name, $cusPrefix: $prefix) {
+    @return $cusPrefix+'-'+$name;
+}
+
+@function BEMElement($name, $element) {
+    @return $name+'__'+$element;
+}
+
+@function BEMModifier($element, $modifier) {
+    @return $element+'--'+$modifier;
+}

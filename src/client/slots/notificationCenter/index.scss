@@ -1,0 +1,40 @@
+@import '../../classNames/style.scss';
+
+$notification: prefix('notification');
+
+$header: BEMElement($notification, 'header');
+$body: BEMElement($notification, 'body');
+
+.#{$notification} {
+    background-color: var(--notifications-background);
+    bottom: 32px;
+    box-shadow: var(--widget-shadow) 0px 0px 8px 2px;
+    color: var(--notifications-foreground);
+    overflow: hidden;
+    position: fixed;
+    right: 8px;
+    z-index: 1000;
+    border-radius: 5px;
+
+    .#{$header} {
+        direction: ltr;
+        height: 35px;
+        padding-left: 8px;
+        padding-right: 5px;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    .#{$body} {
+        width: 450px;
+        max-height: 500px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+:export {
+    notification: $notification;
+    header: $header;
+    body: $body;
+}

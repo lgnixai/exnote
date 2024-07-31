@@ -1,0 +1,81 @@
+{
+    "name": "exnote",
+    "version": "1.0.1",
+    "description": "A Web IDE UI Framework built with React.js, inspired by VSCode.",
+    "module": "./esm/index.js",
+    "typings": "./esm/index.d.ts",
+    "files": [
+        "esm"
+    ],
+    "scripts": {
+        "dev": "./bin/m.cjs dev",
+        "build": "./bin/m.cjs build",
+        "web": "vite serve app/ -c app/vite.config.ts",
+        "lint": "npx eslint './src/**/*.ts' './src/**/*.tsx'",
+        "prettier": "npx prettier --write src/",
+        "prepublishOnly": "npm run build",
+        "release": "bumpp --commit --push --tag && npm publish"
+    },
+    "keywords": [
+        "react.js",
+        "vscode",
+        "ui",
+        "ide"
+    ],
+    "author": "DTStack Corporation",
+    "license": "MIT",
+    "peerDependencies": {
+        "react": ">=16.13.1",
+        "react-dom": ">=16.13.1"
+    },
+    "repository": "https://github.com/lgnixai/exnote",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    },
+    "devDependencies": {
+        "exnote": "./",
+        "@types/lodash-es": "^4.17.8",
+        "@types/node": "^20.4.7",
+        "@types/react": "^18.2.18",
+        "@types/react-dom": "^18.2.7",
+        "@types/use-sync-external-store": "^0.0.6",
+        "@types/yargs": "^17.0.24",
+        "@vitejs/plugin-react": "^4.0.4",
+        "bumpp": "^9.2.1",
+        "chalk": "4.x",
+        "chokidar": "^3.5.3",
+        "concurrently": "^8.2.1",
+        "esbuild": "^0.18.17",
+        "glob": "^10.3.3",
+        "ko-lint-config": "^2.2.21",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rimraf": "^5.0.1",
+        "sass": "^1.65.1",
+        "tsc-alias": "^1.8.7",
+        "typescript": "4.7.4",
+        "vite": "^4.4.9",
+        "vite-plugin-mock-dev-server": "^1.4.0",
+        "vite-plugin-monaco-editor": "^1.1.0",
+        "yargs": "^17.7.2"
+    },
+    "dependencies": {
+        "@dtinsight/dt-utils": "^1.1.2",
+        "@vscode/codicons": "^0.0.33",
+        "immer": "^10.0.3",
+        "lodash-es": "^4.17.21",
+        "monaco-editor": "^0.31.0",
+        "monaco-editor-nls": "2.0.0",
+        "normalize.css": "^8.0.1",
+        "rc-dropdown": "^4.1.0",
+        "rc-menu": "^9.11.1",
+        "react-dnd": "^16.0.1",
+        "react-dnd-html5-backend": "^16.0.1",
+        "react-use": "^17.4.2",
+        "reflect-metadata": "^0.1.13",
+        "sonner": "^1.4.0",
+        "tapable": "^2.2.1",
+        "tsyringe": "^4.8.0",
+        "use-sync-external-store": "^1.2.0"
+    }
+}

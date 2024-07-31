@@ -1,0 +1,103 @@
+@import '../../classNames/style.scss';
+
+$collapse: prefix('collapse');
+$item: BEMElement($collapse, 'item');
+$pane: BEMElement($collapse, 'pane');
+$header: BEMElement($collapse, 'header');
+$title: BEMElement($collapse, 'title');
+$content: BEMElement($collapse, 'content');
+$extra: BEMElement($collapse, 'extra');
+
+$headerSize: 26px;
+$transitionDelay: 150;
+
+.#{$collapse} {
+    height: 100%;
+    overflow: hidden;
+
+    .#{$pane} {
+        transition: top ease-out #{$transitionDelay}ms, height ease-out #{$transitionDelay}ms;
+
+        &:first-child .#{$header} {
+            border-top-color: transparent;
+        }
+    }
+
+    .#{$item} {
+        height: 100%;
+        overflow: hidden;
+        width: 100%;
+
+        &:hover,
+        &:focus-within {
+            .#{$extra} {
+                opacity: 1;
+            }
+        }
+    }
+
+    .#{$header} {
+        border-bottom: 1px solid transparent;
+        border-top: 1px solid var(--sideBarSectionHeader-border, transparent);
+        box-sizing: border-box;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        height: $headerSize;
+        padding: 1px 2px;
+        user-select: none;
+        line-height: 22px;
+
+        .#{$title} {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+    }
+
+    .#{$content} {
+        height: calc(100% - $headerSize);
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            outline: 1px solid var(--focusBorder);
+            outline-offset: -1px;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        &:focus {
+            // DO NOT USE default outline here, it will cause the outline be covered by folderTree's hover background
+            outline: none;
+
+            &::before {
+                opacity: 1;
+            }
+        }
+    }
+
+    .#{$extra} {
+        opacity: 0;
+    }
+}
+
+:export {
+    collapse: $collapse;
+    item: $item;
+    pane: $pane;
+    header: $header;
+    title: $title;
+    content: $content;
+    extra: $extra;
+
+    headerSize: $headerSize;
+    transitionDelay: $transitionDelay;
+}

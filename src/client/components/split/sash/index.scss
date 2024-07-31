@@ -1,0 +1,41 @@
+@import '../../../classNames/style.scss';
+
+$container: prefix('sash');
+
+$hover: BEMModifier($container, 'hover');
+$disabled: BEMModifier($container, 'disabled');
+$vertical: BEMModifier($container, 'vertical');
+$horizontal: BEMModifier($container, 'horizontal');
+
+.#{$container} {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: background-color 0.1s;
+    width: 100%;
+    z-index: 2;
+
+    &.#{$disabled} {
+        pointer-events: none;
+    }
+
+    &.#{$hover} {
+        background-color: var(--sash-hoverBorder);
+    }
+
+    &.#{$vertical} {
+        cursor: ew-resize;
+    }
+
+    &.#{$horizontal} {
+        cursor: n-resize;
+    }
+}
+
+:export {
+    container: $container;
+    hover: $hover;
+    disabled: $disabled;
+    vertical: $vertical;
+    horizontal: $horizontal;
+}

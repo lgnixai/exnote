@@ -1,0 +1,27 @@
+@import '../../classNames/style.scss';
+
+$statusBar: prefix('statusBar');
+$container: BEMElement($statusBar, 'container');
+$items: BEMElement($container, 'items');
+
+
+.#{$container} {
+    background-color: var(--statusBar-background);
+    border-color: var(--statusBar-border);
+    border-top: 1px solid var(--statusBar-border);
+    color: var(--statusBar-foreground);
+    height: 22px;
+    padding: 0 7px;
+    font-size: 12px;
+
+    .#{$items} {
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+
+:export {
+    container: $container;
+    items: $items;
+}

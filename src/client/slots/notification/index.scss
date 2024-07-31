@@ -1,0 +1,17 @@
+@import '../../classNames/style.scss';
+
+$notification: prefix('notification');
+$bell: BEMElement($notification, 'bell');
+
+.#{$bell} {
+    height: 100%;
+    position: relative;
+
+    &::before {
+        vertical-align: sub;
+    }
+}
+
+:export {
+    bell: $bell;
+}

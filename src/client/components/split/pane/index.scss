@@ -1,0 +1,14 @@
+@import '../../../classNames/style.scss';
+$container: prefix('pane');
+
+.#{$container} {
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    white-space: normal;
+    width: 100%;
+}
+
+:export {
+    pane: $container;
+}

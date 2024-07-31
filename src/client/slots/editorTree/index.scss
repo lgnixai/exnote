@@ -1,0 +1,115 @@
+@import '../../classNames/style.scss';
+
+$editorTree: prefix('editorTree');
+$group: BEMElement($editorTree, 'group');
+$item: BEMElement($editorTree, 'item');
+$toolbar: BEMElement($editorTree, 'toolbar');
+$close: BEMElement($item, 'close');
+$file: BEMElement($item, 'file');
+$name: BEMElement($item, 'name');
+$path: BEMElement($item, 'path');
+
+$active: BEMModifier($item, 'active');
+
+.#{$editorTree} {
+    font-size: 13px;
+    max-height: 220px;
+
+    .#{$item} {
+        // keep same with tree node
+        align-items: center;
+        outline: 1px solid transparent;
+        outline-offset: -1px;
+        cursor: pointer;
+        display: flex;
+        height: 22px;
+        line-height: 22px;
+        list-style: none;
+        margin: 0;
+        padding-left: 16px;
+        user-select: none;
+        white-space: nowrap;
+
+        &.#{$active} {
+            background-color: var(--list-inactiveSelectionBackground);
+
+            .#{$close} {
+                color: var(--icon-foreground);
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            &:not(.#{$active}) {
+                background-color: var(--list-hoverBackground);
+            }
+
+            .#{$close} {
+                opacity: 1;
+            }
+        }
+
+        &:focus {
+            background: var(--list-activeSelectionBackground);
+            outline-color: var(--list-focusOutline);
+            color: #fff;
+        }
+
+        .#{$name} {
+            flex-basis: auto;
+            margin-left: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: pre;
+        }
+
+        .#{$path} {
+            flex: 1;
+            font-size: 0.9em;
+            margin-left: 5px;
+            opacity: 0.8;
+            overflow: hidden;
+            padding-top: 2px;
+            text-overflow: ellipsis;
+            white-space: pre;
+        }
+    }
+
+    .#{$group} {
+        font-size: 11px;
+        height: 22px;
+        line-height: 22px;
+        padding-left: 16px;
+        user-select: none;
+
+        &:hover {
+            background-color: var(--list-hoverBackground);
+
+            .#{$toolbar} {
+                opacity: 1;
+            }
+        }
+    }
+
+    .#{$toolbar} {
+        opacity: 0;
+    }
+
+    .#{$close} {
+        margin-right: 2px;
+        opacity: 0;
+    }
+}
+
+:export {
+    editorTree: $editorTree;
+    group: $group;
+    item: $item;
+    toolbar: $toolbar;
+    close: $close;
+    file: $file;
+    name: $name;
+    path: $path;
+
+    active: $active;
+}

@@ -1,0 +1,78 @@
+@import '../../classNames/style.scss';
+
+$container: $prefix;
+$main: prefix('mainBench');
+$toaster: prefix('toaster');
+
+.#{$prefix} {
+    background-color: var(--workbenchBackground);
+    color: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+
+    &:focus {
+        outline: none !important;
+    }
+
+    *::selection {
+        background-color: var(--editor-selectionBackground);
+    }
+
+    code {
+        background: var(--textCodeBlock-background);
+    }
+
+    &.codicon {
+        color: var(--icon-foreground);
+    }
+
+    .#{$main} {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+
+        .monaco-scrollable-element {
+            & > .scrollbar > .slider {
+                background: var(--scrollbarSlider-activeBackground);
+
+                &:hover {
+                    background: var(--scrollbarSlider-hoverBackground);
+                }
+            }
+        }
+    }
+}
+
+.#{$toaster}[data-sonner-toaster] {
+    width: 450px;
+    cursor: pointer;
+    box-shadow: var(--widget-shadow) 0px 0px 8px 2px;
+    color: var(--notifications-foreground);
+
+    [data-sonner-toast] {
+        border: 1px solid var(--widget-border);
+        border-radius: 5px;
+    }
+
+    &[data-x-position='right'] {
+        right: 16px;
+    }
+
+    &[data-y-position='bottom'] {
+        bottom: 40px;
+    }
+
+    [tabindex='0']:focus {
+        outline: none;
+    }
+}
+
+:export {
+    container: $container;
+    main: $main;
+    toaster: $toaster;
+}

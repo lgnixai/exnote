@@ -1,0 +1,94 @@
+@import '../../classNames/style.scss';
+
+$panel: prefix('panel');
+$header: BEMElement($panel, 'header');
+$content: BEMElement($panel, 'content');
+$item: BEMElement($panel, 'item');
+
+$disabled: BEMModifier($panel, 'disabled');
+$active: BEMModifier($item, 'active');
+
+$header-size: 35px;
+
+.#{$panel} {
+    background-color: var(--panel-background);
+    height: 100%;
+    width: 100%;
+    border-top: 1px solid var(--panel-border);
+
+    .#{$header} {
+        height: $header-size;
+    }
+
+    .#{$item} {
+        color: var(--panelTitle-inactiveForeground);
+        font-size: 11px;
+        margin: 2px 6px;
+        padding: 0 4px;
+        line-height: 32px;
+        text-transform: uppercase;
+        user-select: none;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &>.codicon-close {
+            opacity: 0;
+        }
+
+        &:not(.#{$disabled}):hover {
+            color: var(--panelTitle-activeForeground);
+
+            &>.codicon-close {
+                opacity: 1;
+            }
+        }
+
+        &.#{$disabled} {
+            color: var(--disabledForeground);
+        }
+
+        &.#{$active} {
+            color: var(--panelTitle-activeForeground);
+            outline: var(--contrastActiveBorder, unset) solid 1px;
+
+            &::after {
+                background-color: var(--panelTitle-activeBorder);
+                bottom: 4px;
+                content: ' ';
+                height: 1px;
+                left: 0;
+                position: absolute;
+                width: 100%;
+            }
+
+            &>.codicon-close {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    .#{$content} {
+        height: calc(100% - $header-size);
+        width: 100%;
+        transform: translateY(-1px);
+
+        &:focus {
+            outline-color: var(--list-focusOutline);
+        }
+    }
+}
+
+:export {
+    container: $panel;
+    header: $header;
+    content: $content;
+    item: $item;
+    active: $active;
+    disabled: $disabled;
+}

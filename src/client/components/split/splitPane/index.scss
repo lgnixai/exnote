@@ -1,0 +1,14 @@
+@import '../../../classNames/style.scss';
+
+$split: prefix('split');
+
+.#{$split} {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+:export {
+    container: $split;
+}

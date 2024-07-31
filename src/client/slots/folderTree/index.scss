@@ -1,0 +1,17 @@
+@import '../../classNames/style.scss';
+
+$folderTree: prefix('folderTree');
+$input: BEMElement($folderTree, 'input');
+
+.#{$folderTree} {
+    padding-bottom: 22px;
+
+    .#{$input} {
+        width: 100%;
+    }
+}
+
+:export {
+    folderTree: $folderTree;
+    input: $input;
+}

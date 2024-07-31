@@ -1,0 +1,36 @@
+@import '../../classNames/style.scss';
+
+$container: prefix('search');
+$widget: BEMElement($container, 'widget');
+$result: BEMElement($container, 'result');
+$notFound: BEMElement($container, 'notFound');
+
+.#{$container} {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+
+    .#{$widget} {
+        margin: 0 8px 5px;
+    }
+
+    .#{$result} {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .#{$notFound} {
+        margin: 0 8px 5px;
+        overflow-wrap: break-word;
+        cursor: default;
+        color: var(--search-resultsInfoForeground);
+    }
+}
+
+:export {
+    container: $container;
+    widget: $widget;
+    result: $result;
+    notFound: $notFound;
+}
